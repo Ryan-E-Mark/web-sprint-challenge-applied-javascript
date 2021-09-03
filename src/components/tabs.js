@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Tabs = (topics) => {
   // TASK 3
   // ---------------------
@@ -13,6 +15,21 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
+
+  // Instantiating the topics div and giving it a class
+  const topicsDiv = document.createElement('div');
+  topicsDiv.classList.add('topics');
+
+  // Running a forEach to create the nested topics out of array data
+  topics.forEach(string => {
+    const topic = document.createElement('div');
+    topic.classList.add('tab');
+    topic.textContent = string;
+    topicsDiv.appendChild(topic);
+  })
+
+  // Returning the topics div 
+  return topicsDiv;
 }
 
 const tabsAppender = (selector) => {
@@ -23,6 +40,20 @@ const tabsAppender = (selector) => {
   // Find the array of topics inside the response, and create the tabs using the Tabs component.
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
+  axios.get(`http://localhost:5000/api/topics`)
+  .then(resp => {
+    const topicData = resp.data.topics;
+    // console.log(topicData);
+    const topicMaker = Tabs(topicData);
+    const appender = document.querySelector(`${selector}`);
+    appender.appendChild(topicMaker);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+  .finally (() => {
+    // console.log(topicData);
+  })
 }
 
 export { Tabs, tabsAppender }
