@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Card = (article) => {
   // TASK 5
   // ---------------------
@@ -21,7 +23,6 @@ const Card = (article) => {
   const headLine = article.headline;
   const authorImg = article.authorPhoto;
   const name = article.authorName;
-
 
   // Instantiating Elements
   const divCard = document.createElement('div');
@@ -60,6 +61,45 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+  axios.get(`http://localhost:5000/api/articles`)
+  .then(resp => {
+    const articlesBootstrap = resp.data.articles.bootstrap;
+    articlesBootstrap.forEach(article => {
+      const articleMaker = Card(article);
+      const cardSelector = document.querySelector(`${selector}`);
+      cardSelector.appendChild(articleMaker);
+    })
+    const articlesJavaScript = resp.data.articles.javascript;
+    articlesJavaScript.forEach(article => {
+      const articleMaker = Card(article);
+      const cardSelector = document.querySelector(`${selector}`);
+      cardSelector.appendChild(articleMaker);
+    })
+    const articlesJquery = resp.data.articles.jquery;
+    articlesJquery.forEach(article => {
+      const articleMaker = Card(article);
+      const cardSelector = document.querySelector(`${selector}`);
+      cardSelector.appendChild(articleMaker);
+    })
+    const articlesNode = resp.data.articles.node;
+    articlesNode.forEach(article => {
+      const articleMaker = Card(article);
+      const cardSelector = document.querySelector(`${selector}`);
+      cardSelector.appendChild(articleMaker);
+    })
+    const articlesTechnology = resp.data.articles.technology;
+    articlesTechnology.forEach(article => {
+      const articleMaker = Card(article);
+      const cardSelector = document.querySelector(`${selector}`);
+      cardSelector.appendChild(articleMaker);
+    })
+    // console.log(articlesBootstrap)
+    
+  })
+  .catch(err => {
+    console.log(err);
+  })
+  
 }
 
 export { Card, cardAppender }

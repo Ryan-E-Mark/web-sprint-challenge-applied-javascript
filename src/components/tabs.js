@@ -16,8 +16,9 @@ const Tabs = (topics) => {
   // </div>
   //
 
-  // Instantiating the topics div
+  // Instantiating the topics div and giving it a class
   const topicsDiv = document.createElement('div');
+  topicsDiv.classList.add('topics');
 
   // Running a forEach to create the nested topics out of array data
   topics.forEach(string => {
