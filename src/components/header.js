@@ -13,6 +13,8 @@ const Header = (title, date, temp) => {
   //
 }
 
+// test for push
+
 const headerAppender = (selector) => {
   // TASK 2
   // ---------------------
