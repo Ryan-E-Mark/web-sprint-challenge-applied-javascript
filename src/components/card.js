@@ -49,6 +49,10 @@ const Card = (article) => {
   imgContainer.appendChild(img);
   author.appendChild(authorsName);
 
+  divCard.addEventListener('click', event => {
+    console.log(headLine);
+  })
+
   return divCard;
 }
 
@@ -63,6 +67,19 @@ const cardAppender = (selector) => {
   //
   axios.get(`http://localhost:5000/api/articles`)
   .then(resp => {
+
+    // const data = resp.data.articles;
+    // data.forEach((element) => {
+    //   const articleData = element;
+    //   articleData.forEach(article => {
+    //     const articleMaker = Card(article);
+    //   const cardSelector = document.querySelector(`${selector}`);
+    //   cardSelector.appendChild(articleMaker);
+    //   })
+      
+    // })
+    // I tried to make this more DRY but wasn't quite sure how to 
+  
     const articlesBootstrap = resp.data.articles.bootstrap;
     articlesBootstrap.forEach(article => {
       const articleMaker = Card(article);
