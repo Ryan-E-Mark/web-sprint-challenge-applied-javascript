@@ -17,6 +17,38 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+  // Object destructuring
+  const headLine = article.headline;
+  const authorImg = article.authorPhoto;
+  const name = article.authorName;
+
+
+  // Instantiating Elements
+  const divCard = document.createElement('div');
+  const divHeadLine = document.createElement('div');
+  const author = document.createElement('div');
+  const imgContainer = document.createElement('div');
+  const img = document.createElement('img');
+  const authorsName = document.createElement('span');
+
+  // Giving elements their classes and content
+  divCard.classList.add('card');
+  divHeadLine.classList.add('headline');
+  author.classList.add('author');
+  imgContainer.classList.add('img-container');
+  
+  divHeadLine.textContent = headLine;
+  img.src = authorImg;
+  authorsName.textContent = `By ${name}`;
+
+  // Setting up structure of elements
+  divCard.appendChild(divHeadLine);
+  divCard.appendChild(author);
+  author.appendChild(imgContainer);
+  imgContainer.appendChild(img);
+  author.appendChild(authorsName);
+
+  return divCard;
 }
 
 const cardAppender = (selector) => {
